@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cyber Detective Girls</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg,#ffb6f9,#c7b6ff,#9ee7ff);
+      padding:20px;
+    }
+
+    .game-box{
+      width:100%;
+      max-width:700px;
+      background:white;
+      border-radius:25px;
+      padding:35px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    h1{
+      text-align:center;
+      color:#7a1cac;
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#555;
+      margin-bottom:30px;
+      line-height:1.6;
+    }
+
+    .instructions{
+      background:#fff0fb;
+      padding:20px;
+      border-radius:20px;
+      margin-bottom:25px;
+    }
+
+    .instructions h2{
+      color:#d63384;
+      margin-bottom:10px;
+    }
+
+    .instructions li{
+      margin-left:20px;
+      margin-bottom:8px;
+      color:#555;
+    }
+
+    .btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:16px;
+      background:#7a1cac;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#5d1485;
+      transform:scale(1.02);
+    }
+
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+    }
+
+    .score{
+      text-align:right;
+    }
+
+    .score h3{
+      color:#666;
+      font-size:14px;
+    }
+
+    .score p{
+      font-size:30px;
+      color:#ff1493;
+      font-weight:bold;
+    }
+
+    .story{
+      background:#eefbff;
+      padding:20px;
+      border-radius:18px;
+      margin-bottom:20px;
+      line-height:1.6;
+      color:#444;
+    }
+
+    .timer{
+      background:#f3e8ff;
+      padding:15px;
+      border-radius:15px;
+      margin-bottom:25px;
+      display:flex;
+      justify-content:space-between;
+      font-weight:bold;
+      color:#6a11cb;
+    }
+
+    .question{
+      font-size:24px;
+      margin-bottom:20px;
+      color:#333;
+    }
+
+    .option{
+      width:100%;
+      padding:16px;
+      margin-bottom:15px;
+      border-radius:16px;
+      border:2px solid #ddd;
+      background:white;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+      text-align:left;
+    }
+
+    .option:hover{
+      background:#f8f0ff;
+      border-color:#b56eff;
+    }
+
+    .correct{
+      background:#d4ffd4 !important;
+      border-color:#2ecc71 !important;
+    }
+
+    .wrong{
+      background:#ffd6d6 !important;
+      border-color:#ff4d4d !important;
+    }
+
+    .result-box{
+      margin-top:20px;
+      background:#fff9db;
+      border-radius:18px;
+      padding:20px;
+    }
+
+    .result-box h3{
+      margin-bottom:10px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .final-score{
+      text-align:center;
+    }
+
+    .final-score h2{
+      font-size:45px;
+      color:#7a1cac;
+      margin:20px 0;
+    }
+
+    .rank{
+      font-size:26px;
+      margin-bottom:20px;
+      color:#ff1493;
+      font-weight:bold;
+    }
+
+    @media(max-width:600px){
+      h1{
+        font-size:32px;
+      }
+
+      .question{
+        font-size:20px;
+      }
+
+      .game-box{
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="game-box">
+
+  <div id="start-screen">
+    <h1>Cyber Detective Girls 💻✨</h1>
+
+    <p class="subtitle">
+      Descubra golpes digitais, use inteligência artificial e proteja a escola de um hacker misterioso!
+    </p>
+
+    <div class="instructions">
+      <h2>🎯 Como jogar</h2>
+
+      <ul>
+        <li>Leia cada situação.</li>
+        <li>Escolha a resposta correta.</li>
+        <li>Cada acerto vale 100 pontos.</li>
+        <li>Você possui 20 segundos por fase.</li>
+        <li>No final você recebe uma classificação tech.</li>
+      </ul>
+    </div>
+
+    <button class="btn" onclick="startGame()">
+      🚀 Começar Missão
+    </button>
+  </div>
+
+  <div id="game-screen" class="hidden">
+
+    <div class="top">
+      <div>
+        <h2 id="phase-title"></h2>
+        <small id="phase-number"></small>
+      </div>
+
+      <div class="score">
+        <h3>Pontuação</h3>
+        <p id="score">0</p>
+      </div>
+    </div>
+
+    <div class="story" id="story"></div>
+
+    <div class="timer">
+      <span>⏳ Tempo restante</span>
+      <span id="timer">20s</span>
+    </div>
+
+    <div class="question" id="question"></div>
+
+    <div id="options"></div>
+
+    <div class="result-box hidden" id="result-box">
+      <h3 id="result-title"></h3>
+      <p id="explanation"></p>
+
+      <br>
+
+      <button class="btn" onclick="nextQuestion()">
+        Próxima Fase ➜
+      </button>
+    </div>
+
+  </div>
+
+  <div id="final-screen" class="hidden final-score">
+
+    <h1>Missão Completa 🎉</h1>
+
+    <h2 id="final-score">0</h2>
+
+    <div class="rank" id="rank"></div>
+
+    <p style="margin-bottom:25px; color:#555;">
+      A tecnologia precisa de mais meninas criando, inovando e protegendo o mundo digital 💜
+    </p>
+
+    <button class="btn" onclick="restartGame()">
+      🔄 Jogar Novamente
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+const questions = [
+  {
+    title: "📱 Mensagem Suspeita",
+    story: "Uma influencer da escola recebeu uma mensagem dizendo que ganhou um celular grátis.",
+    question: "Qual sinal indica phishing?",
+    options: [
+      "Link estranho encurtado",
+      "Mensagem educada",
+      "Uso de emojis",
+      "Foto bonita"
+    ],
+    correct: 0,
+    explanation: "Links estranhos e encurtados são muito usados em golpes online."
+  },
+
+  {
+    title: "🤖 IA ou Humano?",
+    story: "Uma foto viral está circulando na escola.",
+    question: "Qual característica pode indicar imagem feita por IA?",
+    options: [
+      "Dedos deformados",
+      "Cabelo bonito",
+      "Muita iluminação",
+      "Fundo colorido"
+    ],
+    correct: 0,
+    explanation: "Imagens de IA frequentemente apresentam erros nas mãos e dedos."
+  },
+
+  {
+    title: "🔐 Senha Forte",
+    story: "A conta da escola quase foi invadida!",
+    question: "Qual senha é mais segura?",
+    options: [
+      "123456",
+      "senha123",
+      "Maria2009",
+      "M@r!a#Tech2026"
+    ],
+    correct: 3,
+    explanation: "Senhas fortes misturam letras, números e símbolos."
+  },
+
+  {
+    title: "🕵️ Investigação Final",
+    story: "Você encontrou pistas do hacker da escola.",
+    question: "O que fazer ao encontrar vazamento de dados?",
+    options: [
+      "Compartilhar nas redes",
+      "Avisar um responsável",
+      "Ignorar",
+      "Mandar para amigos"
+    ],
+    correct: 1,
+    explanation: "O correto é avisar responsáveis e proteger os dados."
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let timer = 20;
+let interval;
+
+function startGame(){
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
+
+  loadQuestion();
+}
+
+function loadQuestion(){
+
+  clearInterval(interval);
+
+  timer = 20;
+  document.getElementById("timer").innerText = timer + "s";
+
+  interval = setInterval(() => {
+    timer--;
+    document.getElementById("timer").innerText = timer + "s";
+
+    if(timer <= 0){
+      clearInterval(interval);
+      showResult(false);
+    }
+
+  },1000);
+
+  const q = questions[currentQuestion];
+
+  document.getElementById("phase-title").innerText = q.title;
+  document.getElementById("phase-number").innerText =
+    `Fase ${currentQuestion + 1} de ${questions.length}`;
+
+  document.getElementById("story").innerText = q.story;
+  document.getElementById("question").innerText = q.question;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.options.forEach((option,index)=>{
+
+    const button = document.createElement("button");
+
+    button.classList.add("option");
+    button.innerText = option;
+
+    button.onclick = () => selectAnswer(index);
+
+    optionsDiv.appendChild(button);
+
+  });
+
+  document.getElementById("result-box").classList.add("hidden");
+}
+
+function selectAnswer(index){
+
+  clearInterval(interval);
+
+  const q = questions[currentQuestion];
+  const buttons = document.querySelectorAll(".option");
+
+  buttons.forEach(btn => btn.disabled = true);
+
+  if(index === q.correct){
+
+    buttons[index].classList.add("correct");
+
+    score += 100;
+
+    document.getElementById("score").innerText = score;
+
+    showResult(true);
+
+  }else{
+
+    buttons[index].classList.add("wrong");
+    buttons[q.correct].classList.add("correct");
+
+    showResult(false);
+  }
+
+}
+
+function showResult(correct){
+
+  const q = questions[currentQuestion];
+
+  document.getElementById("result-box").classList.remove("hidden");
+
+  document.getElementById("result-title").innerText =
+    correct ? "✅ Resposta Correta!" : "❌ Ops!";
+
+  document.getElementById("explanation").innerText =
+    q.explanation;
+}
+
+function nextQuestion(){
+
+  currentQuestion++;
+
+  if(currentQuestion < questions.length){
+
+    loadQuestion();
+
+  }else{
+
+    finishGame();
+  }
+
+}
+
+function finishGame(){
+
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("final-screen").classList.remove("hidden");
+
+  document.getElementById("final-score").innerText =
+    score + " pontos";
+
+  let rank = "";
+
+  if(score >= 400){
+    rank = "👑 Cyber Queen da Tecnologia";
+  }
+  else if(score >= 200){
+    rank = "💡 Exploradora Digital";
+  }
+  else{
+    rank = "🌱 Aprendiz Tech";
+  }
+
+  document.getElementById("rank").innerText = rank;
+}
+
+function restartGame(){
+
+  currentQuestion = 0;
+  score = 0;
+
+  document.getElementById("score").innerText = 0;
+
+  document.getElementById("final-screen").classList.add("hidden");
+  document.getElementById("start-screen").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
