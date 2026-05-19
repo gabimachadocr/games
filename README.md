@@ -3,7 +3,7 @@ Games for girls
 
 Dois jogos educativos e divertidos criado para despertar o interesse de meninas de 13 a 17 anos pelo mundo da tecnologia, segurança digital e inteligência artificial.
 
-Game 1:
+Jogo 1:
 # 🚀 TechGirls Challenge - Despertando Meninas para a Tecnologia
 
 ![TechGirls Challenge](https://img.shields.io/badge/TechGirls-Challenge-FF69B4)
@@ -56,18 +56,11 @@ Game 1:
 
 ## 📦 Como Usar
 
-### Opção 1: Jogar Online (Recomendado)
-Acesse: `https://SEUUSUARIO.github.io/techgirls-challenge/`
-
-### Opção 2: Rodar Localmente
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/SEUUSUARIO/techgirls-challenge.git
+### Jogar Online 
 
 
 
-Game 2:
+Jogo 2:
 🎯 Objetivo
 
 A jogadora assume o papel de uma detetive digital que precisa:
