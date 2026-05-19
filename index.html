@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGirls - Central de Jogos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            margin-bottom: 50px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-size: 1.8em;
+            color: #764ba2;
+            margin-bottom: 15px;
+        }
+
+        .game-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .game-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 TechGirls Games 🎮</h1>
+        <div class="subtitle">Escolha seu jogo e comece a aprender tecnologia de forma divertida!</div>
+        
+        <div class="games-grid">
+            <!-- Jogo 1: TechGirls Challenge -->
+            <div class="game-card">
+                <div class="game-icon">🚀</div>
+                <h2 class="game-title">TechGirls Challenge</h2>
+                <p class="game-description">
+                    Jogo de perguntas e respostas sobre tecnologia. Teste seus conhecimentos em 
+                    programação, IA e segurança digital!
+                </p>
+                <div class="game-tags">
+                    <span class="tag">8 Perguntas</span>
+                    <span class="tag">Iniciante</span>
+                    <span class="tag">Quiz</span>
+                </div>
+                <button class="play-button" onclick="window.location.href='jogo1.html'">
+                    🎮 Jogar Agora
+                </button>
+            </div>
+
+            <!-- Jogo 2: Segundo Jogo -->
+            <div class="game-card">
+                <div class="game-icon">💻</div>
+                <h2 class="game-title">Tech Quiz Plus</h2>
+                <p class="game-description">
+                    Versão avançada com mais perguntas e desafios sobre o mundo da tecnologia 
+                    e programação!
+                </p>
+                <div class="game-tags">
+                    <span class="tag">15 Perguntas</span>
+                    <span class="tag">Intermediário</span>
+                    <span class="tag">Desafio</span>
+                </div>
+                <button class="play-button" onclick="window.location.href='jogo2.html'">
+                    🎮 Jogar Agora
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>✨ Aprenda brincando • Desafie suas amigas • Torne-se uma TechGirl ✨</p>
+        </div>
+    </div>
+</body>
+</html>
