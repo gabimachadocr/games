@@ -109,65 +109,7 @@ narrativa interativa.
 
 Tudo pensado para tornar tecnologia mais divertida e acessível para adolescentes.
 
-🚀 Como executar
 
-Basta abrir o arquivo:
-
-index.html
-
-em qualquer navegador moderno.
-
-🌐 Publicando online gratuitamente
-
-Você pode hospedar o jogo gratuitamente em:
-
-GitHub Pages
-Netlify
-Vercel
-📁 Estrutura do projeto
-/
-├── index.html
-└── README.md
-🧠 Tecnologias utilizadas
-HTML5
-CSS3
-JavaScript Vanilla
-🎮 Mecânicas do jogo
-
-Cada fase apresenta:
-
-Uma situação digital
-Uma pergunta interativa
-Múltiplas escolhas
-Feedback educativo
-
-A cada resposta correta:
-
-a jogadora ganha pontos,
-aprende um conceito de tecnologia,
-avança na investigação.
-🏆 Sistema de Ranking
-Pontuação	Classificação
-400	👑 Cyber Queen da Tecnologia
-200–300	💡 Exploradora Digital
-0–100	🌱 Aprendiz Tech
-💡 Possíveis melhorias futuras
-Sistema de níveis
-Música e efeitos sonoros
-Ranking online
-Mais fases
-Personalização de personagem
-Modo multiplayer
-Novos temas de IA e cibersegurança
-👩‍💻 Público-alvo
-
-Meninas de 13 a 17 anos interessadas em:
-
-tecnologia,
-games,
-criatividade,
-segurança digital,
-inteligência artificial.
 📚 Propósito educacional
 
 O projeto foi desenvolvido para incentivar maior participação feminina na tecnologia através da gamificação e do aprendizado interativo.
